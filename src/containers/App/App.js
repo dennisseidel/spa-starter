@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Routes from './Routes';
-
+import NavBar from '../../components/NavBar/NavBar';
 
 class App extends Component {
   constructor(props){
@@ -19,9 +19,7 @@ class App extends Component {
     };
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+        <NavBar />
         <Routes childProps={childProps} />
       </div>
     );
