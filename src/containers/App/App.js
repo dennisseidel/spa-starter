@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Routes from './Routes';
 import NavBar from '../../components/NavBar/NavBar';
+import logo from './platform.svg';
 
 class App extends Component {
   constructor(props){
@@ -17,9 +18,17 @@ class App extends Component {
       isAuthenticated: this.state.isAuthenticated,
       userHasAuthenticated: this.userHasAuthenticated
     };
+    const navElements = [{
+      name: 'Home',
+      url: '/'
+    },
+    {
+      name: 'Product Index',
+      url: '/products'
+    }];
     return (
       <div className="App">
-        <NavBar />
+        <NavBar logo={logo} width='75' height='25' elements={navElements} isAuthenticated={this.state.isAuthenticated}/>
         <Routes childProps={childProps} />
       </div>
     );

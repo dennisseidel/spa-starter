@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import NavBar from './NavBar';
-import logo from '../../containers/Home/cloud-logo.png';
+import logo from '../../containers/App/cloud-logo.png';
 
 storiesOf('NavBar', module)
   .add('authenticated', () => {

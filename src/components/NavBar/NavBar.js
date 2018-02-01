@@ -2,7 +2,7 @@ import React from 'react';
 
 const person = (props) => {
   return (
-    <nav className="navbar" role="navigation" aria-label="dropdown navigation">
+    <nav className="navbar is-light" role="navigation" aria-label="dropdown navigation">
       <a className="navbar-item">
         <img src={props.logo} alt={props.alt} width={props.width} height={props.width} />
       </a>
