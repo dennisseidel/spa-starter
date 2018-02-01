@@ -4,6 +4,7 @@ import {
   BrowserRouter as Router
 } from 'react-router-dom';
 import './index.css';
+import 'typeface-roboto';
 import App from './containers/App/App';
 import registerServiceWorker from './registerServiceWorker';
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Reboot } from 'material-ui';
 import './App.css';
 import Routes from './Routes';
 import NavBar from '../../components/NavBar/NavBar';
-import logo from './platform.svg';
+import logo from './ecosphere-logo.svg';
 
 class App extends Component {
   constructor(props){
@@ -28,7 +29,8 @@ class App extends Component {
     }];
     return (
       <div className="App">
-        <NavBar logo={logo} width='75' height='25' elements={navElements} isAuthenticated={this.state.isAuthenticated}/>
+        <Reboot />  
+        <NavBar logo={logo} width='150' height='25' elements={navElements} isAuthenticated={this.state.isAuthenticated}/>
         <Routes childProps={childProps} />
       </div>
     );
