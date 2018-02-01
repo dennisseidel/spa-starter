@@ -11,11 +11,6 @@ const styles = {
     'margin-left': '30px',
     flex: 1,
   },
-  tabs: {
-    float:'left',
-    display:'flex',
-    'justify-content':'flex-start',
-  },
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
