@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { AppBar, Toolbar, IconButton, MenuItem, Typography, Button, withStyles, Tabs, Tab } from 'material-ui';
 import { MenuIcon, AccountCircle } from 'material-ui-icons';
+import { withRouter } from 'react-router-dom';
 
 const styles = {
   root: {
@@ -17,17 +18,13 @@ const styles = {
   },
 };
 
-const loginHandler = () => {
-  
-}
-
 const appbar = (props) => {
-  const { classes } = props;
+  const { classes, auth } = props;
   return (
-    <AppBar position="satic" color={props.isAuthenticated === true ? "primary" : "inherit"}>
+    <AppBar position="static" color={auth.isAuthenticated === true ? "primary" : "inherit"}>
       <Toolbar>
           {props.logo &&
-             <img src={props.logo} alt={props.alt} width={props.width} height={props.width} />
+             <img src={props.logo} alt={props.alt} width={props.width} height={props.height} />
           }
           <Typography type="title" align="left" color="inherit" className={classes.flex}>
             <Tabs
@@ -36,20 +33,20 @@ const appbar = (props) => {
             >
               {
                 props.elements.map((element) => (
-                  <Tab label={element.name} href={element.url}/>
+                  <Tab label={element.name} href={element.url} key={element.name} />
                 ))
               }
             </Tabs>
           </Typography>
-          { props.isAuthenticated === true ? [
+          { auth.isAuthenticated === true ? [
             <IconButton
                   aria-haspopup="true"
-                  onClick={this.handleMenu}
                   color="inherit"
+                  onClick={auth.logout}
                 >
                   <AccountCircle />
             </IconButton> ] : [
-              <Button color="inherit">Login</Button>
+              <Button color="inherit" key="login" onClick={auth.login}>Login</Button>
           ]}
         </Toolbar>
     </AppBar>

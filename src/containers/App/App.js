@@ -1,24 +1,51 @@
 import React, { Component } from 'react';
 import { Reboot } from 'material-ui';
 import './App.css';
-import Routes from './Routes';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import Home from '../Home/Home';
+import NotFound from '../NotFound/NotFound';
+import Dashboard from '../Dashboard/Dashboard';
+import Callback from '../../components/Callback/Callback';
 import NavBar from '../../components/NavBar/NavBar';
+import Auth from '../../services/Auth/Auth';
 import logo from './ecosphere-logo.svg';
 
-class App extends Component {
-  constructor(props){
-    super(props);
+const auth = new Auth();
 
+class App extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      isAuthenticated: false,
-      isAuthenticating: true
-    };
+      isAuthenticated: auth.isAuthenticated()
+    }
   }
+  handleAuthentication = (nextState, replace) => {
+    if (/access_token|id_token|error/.test(nextState.location.hash)) {
+      auth.handleAuthentication();
+      this.setState({
+        isAuthenticated: true
+      })
+      this.props.history.push("/"); 
+    }
+  }
+  login() {
+    auth.login()
+  }
+  logout() {
+    auth.logout()
+    this.setState({
+      isAuthenticated: false
+    })
+    this.props.history.push("/")
+  }
+  isAuthenticated() {
+    auth.isAuthenticated()
+  }
+  setSession(authResult) {
+    auth.setSession(authResult)
+  }
+
   render() {
-    const childProps = {
-      isAuthenticated: this.state.isAuthenticated,
-      userHasAuthenticated: this.userHasAuthenticated
-    };
     const navElements = [{
       name: 'Home',
       url: '/'
@@ -27,14 +54,29 @@ class App extends Component {
       name: 'Product Index',
       url: '/products'
     }];
+    const authFunc = {
+      login: this.login,
+      logout: this.logout.bind(this),
+      isAuthenticated: this.state.isAuthenticated,
+      setSession: this.setSession
+    }
     return (
       <div className="App">
         <Reboot />  
-        <NavBar logo={logo} width='150' height='25' elements={navElements} isAuthenticated={this.state.isAuthenticated}/>
-        <Routes childProps={childProps} />
+        <NavBar logo={logo} width='150' height='25' elements={navElements} auth={authFunc} />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/callback" render={(props) => {
+            this.handleAuthentication(props);
+            return <Callback {...props} />
+          }}/>
+          { /* Finally, catch all unmatched routes */ }
+          <Route component={NotFound} />
+        </Switch>
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);
