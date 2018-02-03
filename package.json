@@ -21,6 +21,7 @@
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "devDependencies": {
-    "@storybook/react": "^3.3.11"
+    "@storybook/react": "^3.3.11",
+    "create-react-app": "^1.5.1"
   }
 }
