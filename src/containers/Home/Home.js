@@ -11,7 +11,6 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     marginTop: 20,
-    marginLeft: 40,
     marginBottom: 20,
     margin: "0 auto",
   },
@@ -22,7 +21,7 @@ const styles = theme => ({
   },
   title: {
     marginTop: 30,
-    marginLeft: 30,
+    marginLeft: "11%"
   }
 });
 
@@ -67,14 +66,14 @@ const home = class Home extends Component {
           <Typography className={classes.title} type="headline" component="h1" align="left" color="textSecondary">
             News
           </Typography>
-          <Grid container spacing={24} className={classes.root}>
+          <Grid container spacing={24} className={classes.root} justify="center">
             {news.map((entry) => (
-              <Grid item xs={6}>
+              <Grid item xm={6}>
                 <NewsBox picture={entry.picture} title={entry.title} summary={entry.summary} button={entry.button} />
               </Grid>
             ))}
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xm={12}>
               <Footer />
             </Grid>
       </div>
