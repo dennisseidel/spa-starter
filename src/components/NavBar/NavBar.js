@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { AppBar, Toolbar, IconButton, MenuItem, Typography, Button, withStyles, Tabs, Tab } from 'material-ui';
-import { MenuIcon, AccountCircle } from 'material-ui-icons';
-import { withRouter } from 'react-router-dom';
+import { AppBar, Toolbar, IconButton, Typography, Button, withStyles, Tabs, Tab } from 'material-ui';
+import { AccountCircle } from 'material-ui-icons';
 
 const styles = {
   root: {
