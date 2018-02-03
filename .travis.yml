@@ -6,6 +6,8 @@ node_js:
 cache:
   directories:
   - node_modules
+script: 
+    - npm run build
 deploy:
 - provider: s3
   access_key_id: $AWS_ACCESS_KEY
@@ -16,5 +18,3 @@ deploy:
   region: eu-central-1
 after_failure:
   - cat /home/travis/.npm/_logs/*-debug.log
-script: 
-    - npm run build
