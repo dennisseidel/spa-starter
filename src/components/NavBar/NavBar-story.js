@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import NavBar from './NavBar';
-import logo from '../../containers/App/cloud-logo.png';
+import logo from '../../containers/App/ecosphere-logo.svg';
 
 storiesOf('NavBar', module)
   .add('authenticated', () => {
@@ -16,7 +16,10 @@ storiesOf('NavBar', module)
         url: "/service"
       }
     ];
-    return <NavBar logo={logo} width='75' height='25' elements={elements} isAuthenticated={true} />
+    let auth = {
+      isAuthenticated: true
+    }
+    return <NavBar logo={logo} width='150' height='25' elements={elements} auth={auth} />
   })
   .add('unauthenticated', () => {
     let elements = [
@@ -33,5 +36,8 @@ storiesOf('NavBar', module)
         url: "/bobshow"
       }
     ];
-    return <NavBar logo={logo} width='75' height='25' elements={elements} isAuthenticated={false} />
+    let auth = {
+      isAuthenticated: false
+    }
+    return <NavBar logo={logo} width='150' height='25' elements={elements} auth={auth} />
   });  
