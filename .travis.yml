@@ -12,5 +12,7 @@ deploy:
   skip_cleanup: true
   bucket: marketplace-client
   region: eu-central-1
+after_failure:
+  - cat /home/travis/.npm/_logs/*-debug.log
 script: 
     - npm run build
