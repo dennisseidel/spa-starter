@@ -21,7 +21,7 @@ const styles = {
 const appbar = (props) => {
   const { classes, auth } = props;
   return (
-    <AppBar position="static" color={auth.isAuthenticated === true ? "primary" : "inherit"}>
+    <AppBar position="static" color={auth.isAuthenticated === true ? "default" : "inherit"}>
       <Toolbar>
           {props.logo &&
              <img src={props.logo} alt={props.alt} width={props.width} height={props.height} />
