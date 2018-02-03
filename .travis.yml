@@ -15,5 +15,4 @@ deploy:
 after_failure:
   - cat /home/travis/.npm/_logs/*-debug.log
 script: 
-    - npm run clean
     - npm run build
