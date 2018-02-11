@@ -6,8 +6,8 @@ const auth = class Auth {
     domain: 'd10l.eu.auth0.com',
     clientID: '94YJaDlR5QDpaS7Em6aC02_gj6kA1Q_G',
     redirectUri: 'http://marketplace-client.s3-website.eu-central-1.amazonaws.com/callback',
-    audience: 'https://d10l.eu.auth0.com/userinfo',
-    responseType: 'token id_token',
+    audience: 'https://api.d10l.de',
+    responseType: 'token id_token https://api.d10l.de/products:write https://api.d10l.de/products:read',
     scope: 'openid profile'
   });
 
