@@ -7,8 +7,8 @@ const auth = class Auth {
     clientID: '94YJaDlR5QDpaS7Em6aC02_gj6kA1Q_G',
     redirectUri: 'http://marketplace-client.s3-website.eu-central-1.amazonaws.com/callback',
     audience: 'https://api.d10l.de',
-    responseType: 'token id_token https://api.d10l.de/products:write https://api.d10l.de/products:read',
-    scope: 'openid profile'
+    responseType: 'token id_token',
+    scope: 'openid profile https://api.d10l.de/products:write https://api.d10l.de/products:read'
   });
 
   constructor() {
