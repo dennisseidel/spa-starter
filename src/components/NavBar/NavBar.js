@@ -37,8 +37,22 @@ const appbar = (props) => {
               }
             </Tabs>
           </Typography>
+          {
+            auth.isAuthenticated === true && props.rightElements &&
+            <Tabs
+              indicatorColor="primary"
+              textColor="inherit"
+            >
+              {
+                props.rightElements.map((element) => (
+                  <Tab label={element.name} href={element.url} key={element.name} />
+                ))
+              }
+            </Tabs>
+          }  
           { auth.isAuthenticated === true ? [
             <IconButton
+                  key="login-icon"      
                   aria-haspopup="true"
                   color="inherit"
                   onClick={auth.logout}

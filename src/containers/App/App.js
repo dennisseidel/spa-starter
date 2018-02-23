@@ -54,6 +54,10 @@ class App extends Component {
       name: 'Product Index',
       url: '/products'
     }];
+    const privateElements = [{
+      name: 'Manage',
+      url: '/manage'
+    }]
     const authFunc = {
       login: this.login,
       logout: this.logout.bind(this),
@@ -63,10 +67,10 @@ class App extends Component {
     return (
       <div className="App">
         <Reboot />  
-        <NavBar logo={logo} width='150' height='25' elements={navElements} auth={authFunc} />
+        <NavBar logo={logo} width='150' height='25' elements={navElements} rightElements={privateElements} auth={authFunc} />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/dashboard" exact component={Dashboard} />
+          <Route path="/manage" exact component={Dashboard} />
           <Route path="/callback" render={(props) => {
             this.handleAuthentication(props);
             return <Callback {...props} />

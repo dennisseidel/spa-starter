@@ -16,10 +16,16 @@ storiesOf('NavBar', module)
         url: "/service"
       }
     ];
+    let rightElements = [
+      {
+        name: "Manage",
+        url: "/manage"
+      }
+    ]
     let auth = {
       isAuthenticated: true
     }
-    return <NavBar logo={logo} width='150' height='25' elements={elements} auth={auth} />
+    return <NavBar logo={logo} width='150' height='25' elements={elements} rightElements={rightElements} auth={auth} />
   })
   .add('unauthenticated', () => {
     let elements = [
@@ -39,5 +45,11 @@ storiesOf('NavBar', module)
     let auth = {
       isAuthenticated: false
     }
-    return <NavBar logo={logo} width='150' height='25' elements={elements} auth={auth} />
+    let rightElements = [
+      {
+        name: "Manage",
+        url: "/manage"
+      }
+    ]
+    return <NavBar logo={logo} width='150' height='25' elements={elements} rightElements={rightElements} auth={auth} />
   });  
