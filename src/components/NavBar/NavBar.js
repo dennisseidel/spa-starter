@@ -1,8 +1,10 @@
 import React from 'react'; 
 
 const navbar = (props) => {
+  
+  
   return (
-    <nav className="navbar" role="navigation" aria-label="main navigation">
+    <nav className='navbar is-dark' role="navigation" aria-label="main navigation">
       {props.logo &&
         <div className="navbar-brand">
           <a className="navbar-item" href="/">
@@ -29,6 +31,15 @@ const navbar = (props) => {
             </a>
           ))
         }
+        { props.auth.isAuthenticated === true ? [
+          <a className="navbar-item" onClick={props.auth.logout} key="logout-button">
+              Logout
+          </a>
+          ] : [
+            <a className="navbar-item" onClick={props.auth.login} key="login-button">
+              Login
+          </a>
+        ]}
         </div>
       </div>
     </nav>
