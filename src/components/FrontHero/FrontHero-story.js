@@ -6,4 +6,4 @@ import FrontHero from './FrontHero';
 storiesOf('FrontHero', module)
   .add('basic', () => {
     return <FrontHero />
-  });  
+  });
