@@ -13,4 +13,4 @@ storiesOf('NewsBox', module)
       picture: picture
     }
     return <NewsBox picture={entry.picture} title={entry.title} summary={entry.summary} button={entry.button} />
-  });  
+  });
