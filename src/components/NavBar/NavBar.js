@@ -1,10 +1,14 @@
 import React from 'react'; 
 
 const navbar = (props) => {
-  
+
+  let navbarStyle = ['navbar', 'is-light'];
+  if (props.auth.isAuthenticated === true ) {
+    navbarStyle[1] = 'is-dark'
+  }
   
   return (
-    <nav className='navbar is-dark' role="navigation" aria-label="main navigation">
+    <nav className={navbarStyle.join(' ')} role="navigation" aria-label="main navigation">
       {props.logo &&
         <div className="navbar-brand">
           <a className="navbar-item" href="/">
