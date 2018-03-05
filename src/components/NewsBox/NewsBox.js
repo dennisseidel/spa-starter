@@ -6,7 +6,7 @@ const newsbox = (props) => {
       <div className="card">
         <div className="card-image">
           <figure className="image is-4by3">
-            <img src={props.picture} alt="Placeholder image" />
+            <img src={props.picture} alt="Placeholder" />
           </figure>
         </div>
         <div className="card-content">

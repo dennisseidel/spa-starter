@@ -4,12 +4,6 @@ import NewsBox from '../../components/NewsBox/NewsBox';
 import Footer from '../../components/Footer/Footer';
 import picture from './title.png';
 
-
-const style = {
-  margin: 'auto',
-  maxWidth: '72em'
-}
-
 const home = class Home extends Component {
   constructor(props) {
     super(props)

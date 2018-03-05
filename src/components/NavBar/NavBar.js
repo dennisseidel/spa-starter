@@ -8,7 +8,7 @@ const navbar = (props) => {
   }
   
   return (
-    <nav className={navbarStyle.join(' ')} role="navigation" aria-label="main navigation">
+    <nav className={navbarStyle.join(' ')} aria-label="main navigation">
       {props.logo &&
         <div className="navbar-brand">
           <a className="navbar-item" href="/">
