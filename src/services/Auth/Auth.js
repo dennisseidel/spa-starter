@@ -5,7 +5,7 @@ const auth = class Auth {
   auth0 = new auth0.WebAuth({
     domain: 'd10l.eu.auth0.com',
     clientID: '94YJaDlR5QDpaS7Em6aC02_gj6kA1Q_G',
-    redirectUri: 'http://localhost:3000/callback',
+    redirectUri: 'http://localhost/callback',
     audience: 'https://api.d10l.de',
     responseType: 'token id_token',
     scope: 'openid profile https://api.d10l.de/products:write https://api.d10l.de/products:read'
