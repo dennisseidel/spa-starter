@@ -1,0 +1,10 @@
+version: '3.5'
+
+services:
+  marketplace-frontend:
+    container_name: marketplace-frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '80:80'
