@@ -8,3 +8,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - '80:80'
+  identity-service:
+    image: identity-service:latest
+    build: ~/repo/identities-service/
+    ports:
+      - '5000'

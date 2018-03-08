@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Reboot } from 'material-ui';
 import './App.css';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import Home from '../Home/Home';
@@ -66,7 +65,6 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <Reboot />  
         <NavBar logo={logo} width='150' height='25' elements={navElements} rightElements={privateElements} auth={authFunc} />
         <Switch>
           <Route path="/" exact component={Home} />

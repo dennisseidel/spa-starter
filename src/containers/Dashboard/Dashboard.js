@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import jwt_decode from 'jwt-decode';
 import TextInputForm from '../../components/TextInputForm/TextInputForm';
 
 class Dashboard extends Component {
@@ -9,7 +10,8 @@ class Dashboard extends Component {
       registerAppForm: {
         name: '',
         description: '',
-        redirectUrl: ''
+        redirectUrl: '',
+        logoutUrl: ''
       }
     }
   }
@@ -26,6 +28,18 @@ class Dashboard extends Component {
     this.setState(
       currentState
     )
+  }
+
+  handleCreateApp = (event) => {
+    event.preventDefault();
+    this.setState({ loading: true });
+    // const app = { };
+    // get id token from local storage and get client id
+    const idToken = localStorage.getItem('id_token');
+    const sub = jwt_decode(idToken).sub;
+    // axios.post ../identities/{sub}/clients
+    // if successufl loading = false and deactivate modal
+
   }
 
   render() {
@@ -83,9 +97,10 @@ class Dashboard extends Component {
               <TextInputForm value={this.state.registerAppForm.name} name='Name' placeholder="Allianz Makler Frontend" onChange={(event) => this.onChange(event, 'registerAppForm', 'name')} />
               <TextInputForm value={this.state.registerAppForm.description} name='Description' placeholder="Frontend for the Makler to work." onChange={(event) => this.onChange(event, 'registerAppForm', 'description')} /> 
               <TextInputForm value={this.state.registerAppForm.redirectUrl} name='Redirect URI' placeholder="e.g. https://localhost:8100" onChange={(event) => this.onChange(event, 'registerAppForm', 'redirectUrl')} />
+              <TextInputForm value={this.state.registerApp.logoutUrl} name='Allowed Logout URL' placeholder="e.g. https://localhost:8100/logout" onChange={(event) => this.onChange(event, 'registerAppForm', 'logoutUrl')} />
             </section>
             <footer className="modal-card-foot">
-              <button className="button is-success">Create</button>
+              <button className="button is-success" onClick={this.handleCreateApp}>Create</button>
               <button className="button" onClick={() => this.changeRegisterApp()}>Cancel</button>
             </footer>
           </div>
