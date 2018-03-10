@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 import TextInputForm from '../../components/TextInputForm/TextInputForm';
 
 class Dashboard extends Component {
@@ -37,9 +38,26 @@ class Dashboard extends Component {
     // get id token from local storage and get client id
     const idToken = localStorage.getItem('id_token');
     const sub = jwt_decode(idToken).sub;
-    // axios.post ../identities/{sub}/clients
-    // if successufl loading = false and deactivate modal
-
+    axios.post(`http://localhost:9091/identities/${sub}/clients`, {
+      "allowed_callback_urls": [
+        this.state.registerAppForm.redirectUrl
+      ],
+      "allowed_logout_urls": [
+        this.state.registerAppForm.logoutUrl
+      ],
+      "client_description": this.state.registerAppForm.description,
+      "client_name": this.state.registerAppForm.name
+    })
+    .then((res) => {
+      console.log(res);
+      this.setState({ loading: false});
+      this.changeRegisterApp();
+    }
+    )
+    .catch((error) => {
+      // handle error e.g display it
+      console.log(error);
+    });
   }
 
   render() {
