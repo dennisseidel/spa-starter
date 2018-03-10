@@ -8,8 +8,20 @@ services:
       dockerfile: Dockerfile
     ports:
       - '80:80'
-  identity-service:
-    image: identity-service:latest
+  identities-service:
+    image: identities-service:latest
     build: ~/repo/identities-service/
     ports:
-      - '5000'
+      - '9091:9090'
+    environment:
+      - MONGODB_USERNAME=$MONGODB_USERNAME
+      - MONGODB_PASSWORD=$MONGODB_PASSWORD
+  mongodb:
+    image: 'bitnami/mongodb:latest'
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGODB_ROOT_PASSWORD=$MONGODB_ROOT_PASSWORD
+      - MONGODB_USERNAME=$MONGODB_USERNAME
+      - MONGODB_PASSWORD=$MONGODB_PASSWORD
+      - MONGODB_DATABASE=identities
