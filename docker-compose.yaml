@@ -16,6 +16,10 @@ services:
     environment:
       - MONGODB_USERNAME=$MONGODB_USERNAME
       - MONGODB_PASSWORD=$MONGODB_PASSWORD
+      - auth_client_id=$auth_client_id
+      - auth_client_secret=$auth_client_secret
+      - apigee_client_id=$apigee_client_id
+      - apigee_client_secret=$apigee_client_secret
   mongodb:
     image: 'bitnami/mongodb:latest'
     ports:
