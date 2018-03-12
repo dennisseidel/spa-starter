@@ -8,6 +8,14 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      clients: [
+        {
+          "client_description": "",
+          "client_id": "",
+          "client_name": "",
+          "date_created": ""
+        }
+      ],
       registerApp: false,
       registerAppForm: {
         name: '',
@@ -16,6 +24,16 @@ class Dashboard extends Component {
         logoutUrl: ''
       }
     }
+  }
+
+  componentDidMount() {
+    const idToken = localStorage.getItem('id_token');
+    const sub = jwt_decode(idToken).sub;
+    axios.get(`${config.identitiesServices.URL}/identities/${sub}/clients`).then((response)=>{
+      this.setState({
+        clients: response.data.clients
+      })
+    })
   }
 
   changeRegisterApp() {
@@ -50,8 +68,10 @@ class Dashboard extends Component {
       "client_name": this.state.registerAppForm.name
     })
     .then((res) => {
-      console.log(res);
-      this.setState({ loading: false});
+      let currentState = { ...this.state};
+      currentState["loading"] = false;
+      currentState["clients"] = [...currentState.clients, res.data]
+      this.setState(currentState);
       this.changeRegisterApp();
     }
     )
@@ -96,12 +116,13 @@ class Dashboard extends Component {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Allianz Makler Frontend</td>
-                <td>Frontend for the Makler to work.</td>
-                <td>19.12.2017</td>
-                <td>[-]</td>
-              </tr>
+              {this.state.clients.map((client) => <tr key={client.client_id}>
+                  <td>{client.client_name}</td>
+                  <td>{client.client_description}</td>
+                  <td>{client.date_created}</td>
+                  <td><a className="button is-primary is-outlined" onClick={() => console.log("click")}>Edit</a></td>
+                </tr>)
+              }
             </tbody>
           </table>
         </div>
