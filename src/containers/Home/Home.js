@@ -15,19 +15,19 @@ const home = class Home extends Component {
         picture: picture
       },
       {
-        title: "Introducing Poly API",
+        title: "Introducing Poly API 0",
         summary: "The Poly API enables your application to find and import 3D assets easily and directly from the Poly library. The REST API is available for any platform. If you're building on top of Unity or Unreal Engine make sure to check out the Poly Toolkit, which will make your workflow even more efficient.",
         button: "Learn more",
         picture: picture
       },
       {
-        title: "Introducing Poly API",
+        title: "Introducing Poly API 1",
         summary: "The Poly API enables your application to find and import 3D assets easily and directly from the Poly library. The REST API is available for any platform. If you're building on top of Unity or Unreal Engine make sure to check out the Poly Toolkit, which will make your workflow even more efficient.",
         button: "Learn more",
         picture: picture
       },
       {
-        title: "Introducing Poly API",
+        title: "Introducing Poly API 2",
         summary: "The Poly API enables your application to find and import 3D assets easily and directly from the Poly library. The REST API is available for any platform. If you're building on top of Unity or Unreal Engine make sure to check out the Poly Toolkit, which will make your workflow even more efficient.",
         button: "Learn more",
         picture: picture
@@ -40,13 +40,13 @@ const home = class Home extends Component {
     return (
       <div className="Home">
           <FrontHero />
-          <section class="section">
-            <h1 class="subtitle is-2">
+          <section className="section">
+            <h1 className="subtitle is-2">
               News
             </h1>
-              <div class="tile is-ancestor">
+              <div className="tile is-ancestor">
                 {news.map((entry) => (
-                    <NewsBox picture={entry.picture} title={entry.title} summary={entry.summary} button={entry.button} />
+                    <NewsBox picture={entry.picture} title={entry.title} summary={entry.summary} button={entry.button} key={entry.title} />
                 ))}
               </div>
           </section>
