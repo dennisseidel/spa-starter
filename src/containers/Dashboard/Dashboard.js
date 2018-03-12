@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
+import config from '../../config';
 import TextInputForm from '../../components/TextInputForm/TextInputForm';
 
 class Dashboard extends Component {
@@ -38,7 +39,7 @@ class Dashboard extends Component {
     // get id token from local storage and get client id
     const idToken = localStorage.getItem('id_token');
     const sub = jwt_decode(idToken).sub;
-    axios.post(`http://localhost:9091/identities/${sub}/clients`, {
+    axios.post(`${config.identitiesServices.URL}/identities/${sub}/clients`, {
       "allowed_callback_urls": [
         this.state.registerAppForm.redirectUrl
       ],
