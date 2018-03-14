@@ -120,7 +120,7 @@ class Dashboard extends Component {
                   <td>{client.client_name}</td>
                   <td>{client.client_description}</td>
                   <td>{client.date_created}</td>
-                  <td><a className="button is-primary is-outlined" onClick={() => console.log("click")}>Edit</a></td>
+                  <td><a className="button is-primary is-outlined" onClick={() => console.log("click")}>Details</a></td>
                 </tr>)
               }
             </tbody>
