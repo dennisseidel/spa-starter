@@ -13,156 +13,83 @@
 #   limitations under the License.
 
 ##################################################################################################
-# identities Adapter PROD - UPDATE BY HAND OR WITH A RELEASE JOB
+# developer-portal-ui PROD - UPDATE BY HAND OR WITH A RELEASE JOB
 ##################################################################################################
 apiVersion: v1
 kind: Service
 metadata:
-  name: identities
+  name: developer-portal-ui
   labels:
-    app: identities
+    app: developer-portal-ui
 spec:
   ports:
-  - port: 9090
+  - port: 80
     name: http
   selector:
-    app: identities
+    app: developer-portal-ui
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: identities-v1
+  name: developer-portal-ui-v1
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: identities
+        app: developer-portal-ui
         version: v1
     spec:
       containers:
-      - name: identities
-        image: dennisseidel/identitiesadapter:0.0.2
+      - name: developer-portal-ui
+        image: dennisseidel/identities:0.0.2
         imagePullPolicy: IfNotPresent
         env:
           - name: MODE
             value: prod
-          - name: auth0_endpoint
-            value: https://d10l.eu.auth0.com
-          - name: apigee_management_endpoint
-            value: https://api.enterprise.apigee.com/v1/organizations/denseidel-trial
-          - name: apigee_auth_endpoint
-            value: https://api.enterprise.apigee.com/v1/organizations/denseidel-trial
-          - name: MONGODB_URL
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: MONGODB_URL
-          - name: apigee_client_id
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: apigee_client_id
-          - name: apigee_client_secret
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: apigee_client_secret
-          - name: auth_client_id
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: auth_client_id
-          - name: auth_client_secret
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: auth_client_secret
-          - name: apigee_client_id
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: apigee_client_id
-          
         ports:
-        - containerPort: 9090
+        - containerPort: 80
 ---
 ##################################################################################################
-# identities Adapter Canery
+# developer-portal-ui Adapter Canery
 ##################################################################################################
 apiVersion: v1
 kind: Service
 metadata:
-  name: identities
+  name: developer-portal-ui
   labels:
-    app: identities
+    app: developer-portal-ui
 spec:
   ports:
-  - port: 9090
+  - port: 80
     name: http
   selector:
-    app: identities
+    app: developer-portal-ui
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: identities-canary
+  name: developer-portal-ui-canary
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: identities
+        app: developer-portal-ui
         version: canary
     spec:
       containers:
-      - name: identities
-        image: dennisseidel/identitiesadapter:0.0.7
+      - name: developer-portal-ui
+        image: dennisseidel/identities:0.1.3
         imagePullPolicy: IfNotPresent
         env:
           - name: MODE
             value: prod
-          - name: auth0_endpoint
-            value: https://d10l.eu.auth0.com
-          - name: apigee_management_endpoint
-            value: https://api.enterprise.apigee.com/v1/organizations/denseidel-trial
-          - name: apigee_auth_endpoint
-            value: https://api.enterprise.apigee.com/v1/organizations/denseidel-trial
-          - name: MONGODB_URL
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: MONGODB_URL
-          - name: apigee_client_id
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: apigee_client_id
-          - name: apigee_client_secret
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: apigee_client_secret
-          - name: auth_client_id
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: auth_client_id
-          - name: auth_client_secret
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: auth_client_secret
-          - name: apigee_client_id
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: apigee_client_id
         ports:
-        - containerPort: 9090
+        - containerPort: 80
 ---
 ##################################################################################################
-# RouteRule identities Adapter
+# RouteRule developer-portal-ui Adapter
 ##################################################################################################
 apiVersion: config.istio.io/v1alpha2
 kind: RouteRule
@@ -170,7 +97,7 @@ metadata:
   name: mirror-idetities-traffic-to-canery
 spec:
   destination:
-    name: identities
+    name: developer-portal-ui
   precedence: 11
   route:
   - labels:
@@ -193,64 +120,8 @@ spec:
   rules:
   - http:
       paths:
-      - path: /identities/.*
+      - path: /developer-portal-ui/.*
         backend:
-          serviceName: identities
-          servicePort: 9090
----
-###########################################################################
-# Service Mongodb
-###########################################################################
-apiVersion: v1
-kind: Service
-metadata:
-  name: mongodb
-  labels:
-    app: mongodb
-spec:
-  ports:
-  - port: 27017
-    name: mongo
-  selector:
-    app: mongodb
----
-###########################################################################
-# Deployment Mongodb
-###########################################################################
-apiVersion: extensions/v1beta1
-kind: Deployment
-metadata:
-  name: mongodb-v1
-spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: mongodb
-        version: v1
-    spec:
-      containers:
-      - name: mongodb 
-        image: bitnami/mongodb:latest
-        imagePullPolicy: IfNotPresent
-        env:
-          - name: MONGODB_DATABASE
-            value: identities
-          - name: MONGODB_USERNAME
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: MONGODB_USERNAME
-          - name: MONGODB_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: MONGODB_PASSWORD
-          - name: MONGODB_ROOT_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: identities-secrets
-                key: MONGODB_ROOT_PASSWORD
-        ports:
-        - containerPort: 27017
+          serviceName: developer-portal-ui
+          servicePort: 80
 ---
