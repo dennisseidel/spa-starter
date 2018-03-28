@@ -11,7 +11,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            apt-get install -qqy ruby jq
+            apt-get install -qqy ruby jq npm
             gem install bump
       - checkout
       - setup_remote_docker:

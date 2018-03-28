@@ -2440,4 +2440,6 @@ In the Istio template:
 update name: `developer-portal-ui` to `your-name`
 updter port: `80` to `your-port`
 
-update the image name `developer-portal-ui` in the `build-and-deploy.sh` to 
+update the image name `developer-portal-ui` in the `build-and-deploy.sh` (this also udates the template name that is used in the script)
+
+update the endpoint that are called by the frontend in `/src/config.js` for prod from `http://identities:9090`
