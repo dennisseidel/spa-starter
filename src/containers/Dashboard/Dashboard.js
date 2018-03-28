@@ -27,9 +27,12 @@ class Dashboard extends Component {
   }
 
   componentDidMount() {
+    var reqConfig = {
+      headers: {'Authorization': "Bearer " + localStorage.getItem('access_token')}
+    };
     const idToken = localStorage.getItem('id_token');
     const sub = jwt_decode(idToken).sub;
-    axios.get(`${config.identitiesServices.URL}/identities/${sub}/clients`).then((response)=>{
+    axios.get(`${config.identitiesServices.URL}/identities/${sub}/clients`, reqConfig).then((response)=>{
       this.setState({
         clients: response.data.clients
       })
@@ -57,6 +60,9 @@ class Dashboard extends Component {
     // get id token from local storage and get client id
     const idToken = localStorage.getItem('id_token');
     const sub = jwt_decode(idToken).sub;
+    var reqConfig = {
+      headers: {'Authorization': "Bearer " + localStorage.getItem('access_token')}
+    };
     axios.post(`${config.identitiesServices.URL}/identities/${sub}/clients`, {
       "allowed_callback_urls": [
         this.state.registerAppForm.redirectUrl
@@ -66,7 +72,7 @@ class Dashboard extends Component {
       ],
       "client_description": this.state.registerAppForm.description,
       "client_name": this.state.registerAppForm.name
-    })
+    }, reqConfig)
     .then((res) => {
       let currentState = { ...this.state};
       currentState["loading"] = false;

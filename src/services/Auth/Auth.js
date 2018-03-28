@@ -8,7 +8,7 @@ const auth = class Auth {
     redirectUri: config.identitiesServices.CALLBACK_URL,
     audience: 'https://api.d10l.de',
     responseType: 'token id_token',
-    scope: 'openid profile https://api.d10l.de/products:write https://api.d10l.de/products:read'
+    scope: 'openid profile https://api.d10l.de/identities:read https://api.d10l.de/identities:write'
   });
 
   constructor() {

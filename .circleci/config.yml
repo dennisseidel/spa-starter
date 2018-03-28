@@ -1,0 +1,33 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: google/cloud-sdk
+    environment:
+      - NODE_ENV: test
+      - REACT_APP_USERS_SERVICE_URL: http://localhost:3000
+      - REACT_APP_MOVIES_SERVICE_URL: http://localhost:3001
+    steps:
+      - run:
+          name: Install dependencies
+          command: |
+            apt-get install -qqy ruby jq
+            gem install bump
+      - checkout
+      - setup_remote_docker:
+          name: Setup remote docker environment for docker build
+          reusable: true
+          exclusive: false
+      - run: which gcloud
+      - run:
+          name: Setup Pipeline Image
+          command: ./devops/machine-setup.sh
+      - run:
+          name: Setup cluster
+          command: ./devops/gke-cluster-setup.sh
+      - run:
+          name: Install Istio to cluster
+          command: ./devops/install-istio.sh
+      - run:
+          name: Build and Deploy App
+          command: ./devops/build-and-deploy.sh

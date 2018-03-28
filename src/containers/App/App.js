@@ -52,11 +52,21 @@ class App extends Component {
     {
       name: 'Product Index',
       url: '/products'
-    }];
+    },
+    {
+      name: 'Request API',
+      url: '/requestapi'
+    }
+  ];
     const privateElements = [{
       name: 'Manage',
       url: '/manage'
-    }]
+    },
+    {
+      name: 'Build API',
+      url: '/buildapi'
+    }
+  ]
     const authFunc = {
       login: this.login,
       logout: this.logout.bind(this),
