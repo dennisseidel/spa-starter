@@ -17,9 +17,10 @@ export ISTIO_DIR="$(find . -type d -name istio-*.*  -exec basename {} \;)"
 git pull
 
 # bump version
-bump patch
-version=`cat VERSION`
+npm version --no-git-tag-version patch
+version=`echo -e $(jq -r ".version" package.json)`
 echo "version: $version"
+
 # run build
 docker build -t $USERNAME/$IMAGE:latest --build-arg GIT_COMMIT=$LATEST_GIT_HASH .
 
@@ -31,7 +32,7 @@ docker inspect $USERNAME/$IMAGE:latest | jq '.[].ContainerConfig.Labels'
 
 # GETS THE CURRENT CANARY VERSION FROM VERSION FILE
 cd ./devops/config
-sed "s@\$CANARY_VERSION@$version@g" identitiesadapter-template.yaml > identitiesadapter.yaml
+sed "s@\$CANARY_VERSION@$version@g" $IMAGE-template.yaml > $IMAGE.yaml
 cd ../../
 
 # push to docker hub
@@ -42,7 +43,7 @@ docker push $USERNAME/$IMAGE:latest
 docker push $USERNAME/$IMAGE:$version
 
 # install app
-kubectl apply -f <($PWD/$ISTIO_DIR/bin/istioctl kube-inject -f devops/config/identitiesadapter.yaml)
+kubectl apply -f <($PWD/$ISTIO_DIR/bin/istioctl kube-inject -f devops/config/$IMAGE.yaml)
 # kubectl apply -f <(istioctl kube-inject -f $ISTIO_DIR/samples/bookinfo/kube/bookinfo.yaml)
 
 # Confirm all services and pods are correctly defined and running
