@@ -8,7 +8,7 @@ const dev = {
 const prod = {
   identitiesServices: {
     URL: "http://identities:9090",
-    CALLBACK_URL: "http://localhost/callback"
+    CALLBACK_URL: "http://open.d10l.de/callback"
   }
 };
 
