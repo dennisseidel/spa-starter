@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
       - name: developer-portal-ui
-        image: dennisseidel/identities:0.0.2
+        image: dennisseidel/developer-portal-ui:0.0.2
         imagePullPolicy: IfNotPresent
         env:
           - name: MODE
@@ -80,7 +80,7 @@ spec:
     spec:
       containers:
       - name: developer-portal-ui
-        image: dennisseidel/identities:0.1.3
+        image: dennisseidel/developer-portal-ui:0.1.5
         imagePullPolicy: IfNotPresent
         env:
           - name: MODE
