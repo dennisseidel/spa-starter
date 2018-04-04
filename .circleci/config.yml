@@ -23,11 +23,14 @@ jobs:
           name: Setup Pipeline Image
           command: ./devops/machine-setup.sh
       - run:
-          name: Setup cluster
-          command: ./devops/gke-cluster-setup.sh
+          name: Retrieve cluster credentials
+          command: |
+            gcloud container clusters get-credentials marketplace-istio \
+            --zone us-east1-b --project trusty-acre-156607
       - run:
-          name: Install Istio to cluster
-          command: ./devops/install-istio.sh
+          name: Get istioctl
+          command: |
+            curl -L https://git.io/getLatestIstio | sh -
       - run:
           name: Build and Deploy App
           command: ./devops/build-and-deploy.sh
