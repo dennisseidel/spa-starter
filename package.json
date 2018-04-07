@@ -1,6 +1,6 @@
 {
   "name": "sampleapp-client",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "private": true,
   "dependencies": {
     "auth0-js": "^9.3.3",

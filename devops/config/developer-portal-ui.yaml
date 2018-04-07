@@ -80,7 +80,7 @@ spec:
     spec:
       containers:
       - name: developer-portal-ui
-        image: dennisseidel/developer-portal-ui:0.1.11
+        image: dennisseidel/developer-portal-ui:0.1.12
         imagePullPolicy: IfNotPresent
         env:
           - name: MODE
