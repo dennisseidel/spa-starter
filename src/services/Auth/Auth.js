@@ -25,9 +25,7 @@ const auth = class Auth {
       var reqConfig = {
         headers: {'Authorization': "Bearer " + localStorage.getItem('access_token')}
       };
-      console.log(reqConfig)
-      console.log(profile.identity_id)
-      axios.post(`${config.identitiesServices.URL}/identities/${profile.identity_id}/developerid`, reqConfig).then((response)=>{
+      axios.post(`${config.identitiesServices.URL}/identities/${profile.identity_id}/developerid`, null, reqConfig).then((response)=>{
         localStorage.setItem('developer_id', response.data.developer_id);
       })
     } else {
@@ -40,9 +38,7 @@ const auth = class Auth {
       headers: {'Authorization': "Bearer " + accessToken}
     };
     const sub = jwt_decode(idToken).sub;
-    console.log(sub)
     axios.get(`${config.identitiesServices.URL}/identities/${sub}`, reqConfig).then((response)=>{
-      console.log(response)
       this.setProfile(response.data);
     })
   }
