@@ -6,7 +6,7 @@ const fronthero = (props) => {
       <div className="hero-body">
         <div className="container">
           <h2 className="subtitle is-3">
-            Build <b>anything</b> with EcoSphere
+            Build <b>anything</b> with zealous
           </h2>
           <div className="field">
             <div className="control">

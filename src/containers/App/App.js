@@ -7,7 +7,7 @@ import Dashboard from '../Dashboard/Dashboard';
 import Callback from '../../components/Callback/Callback';
 import NavBar from '../../components/NavBar/NavBar';
 import Auth from '../../services/Auth/Auth';
-import logo from './ecosphere-logo.svg';
+import logo from './logo.svg';
 
 const auth = new Auth();
 
