@@ -84,7 +84,7 @@ class App extends Component {
             this.handleAuthentication(props);
             return <Callback {...props} />
           }}/>
-          <Route path="/manage/:clientname" component={ClientDetails}/>
+          <Route path="/manage/:clientid" component={ClientDetails}/>
           { /* Finally, catch all unmatched routes */ }
           <Route component={NotFound} />
         </Switch>

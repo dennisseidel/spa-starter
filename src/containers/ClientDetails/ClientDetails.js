@@ -28,16 +28,28 @@ class ClientDetails extends Component {
   }
 
   componentDidMount() {
-    const clientname = this.props.match.params.clientname
+    const clientid = this.props.match.params.clientid
     const idToken = localStorage.getItem('id_token');
     const sub = jwt_decode(idToken).sub;
     var reqConfig = {
       headers: {'Authorization': "Bearer " + localStorage.getItem('access_token')}
     };
-    axios.get(`${config.identitiesServices.URL}/identities/${sub}/clients/${clientname}`, reqConfig).then((response)=>{
+    axios.get(`${config.identitiesServices.URL}/identities/${sub}/clients/${clientid}`, reqConfig).then((response)=>{
        this.setState({
          client: response.data
        })
+    })
+  }
+
+  deleteClient() {
+    const clientid = this.props.match.params.clientid
+    const idToken = localStorage.getItem('id_token');
+    const sub = jwt_decode(idToken).sub;
+    var reqConfig = {
+      headers: {'Authorization': "Bearer " + localStorage.getItem('access_token')}
+    };
+    axios.delete(`${config.identitiesServices.URL}/identities/${sub}/clients/${clientid}`, reqConfig).then((response)=>{
+      this.props.history.push(`/manage`)
     })
   }
 
@@ -50,7 +62,7 @@ class ClientDetails extends Component {
             <div><strong>Name:</strong> {this.state.client.client_name}</div>
             <div><strong>Description:</strong> {this.state.client.client_description}</div>
             <div><strong>Created:</strong> {this.state.client.date_created}</div>
-            <div className="button is-danger is-outlined">Delete Client</div>
+            <div className="button is-danger is-outlined" onClick={() => this.deleteClient() }>Delete Client</div>
           </div>
           <div className="box">
             <div className="subtitle is-4">Credentials</div>

@@ -126,7 +126,7 @@ class Dashboard extends Component {
                   <td>{client.client_name}</td>
                   <td>{client.client_description}</td>
                   <td>{client.date_created}</td>
-                  <td><a className="button is-primary is-outlined" onClick={() =>     this.props.history.push(`/manage/${client.client_name}`)}>Details</a></td>
+                  <td><a className="button is-primary is-outlined" onClick={() =>     this.props.history.push(`/manage/${client.client_id}`)}>Details</a></td>
                 </tr>)
               }
             </tbody>
