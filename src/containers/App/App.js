@@ -6,6 +6,7 @@ import NotFound from '../NotFound/NotFound';
 import Dashboard from '../Dashboard/Dashboard';
 import Callback from '../../components/Callback/Callback';
 import NavBar from '../../components/NavBar/NavBar';
+import ClientDetails from '../ClientDetails/ClientDetails';
 import Auth from '../../services/Auth/Auth';
 import logo from './logo.svg';
 
@@ -83,6 +84,7 @@ class App extends Component {
             this.handleAuthentication(props);
             return <Callback {...props} />
           }}/>
+          <Route path="/manage/:clientname" component={ClientDetails}/>
           { /* Finally, catch all unmatched routes */ }
           <Route component={NotFound} />
         </Switch>
