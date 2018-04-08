@@ -53,6 +53,21 @@ class ClientDetails extends Component {
     })
   }
 
+  rotateClientCredentials() {
+    const clientid = this.props.match.params.clientid
+    const idToken = localStorage.getItem('id_token');
+    const sub = jwt_decode(idToken).sub;
+    var reqConfig = {
+      headers: {'Authorization': "Bearer " + localStorage.getItem('access_token')}
+    };
+    axios.patch(`${config.identitiesServices.URL}/identities/${sub}/clients/${clientid}/secrets`, null, reqConfig).then((response)=>{
+      this.setState({
+        client: { ...this.state.client, client_secret: response.data.client_secret}
+      });
+    })
+  }
+
+
   render() {
     return (
       <section className="section">
@@ -68,7 +83,7 @@ class ClientDetails extends Component {
             <div className="subtitle is-4">Credentials</div>
             <div><strong>Client ID:</strong> {this.state.client.client_id}</div>
             <div><strong>Secret:</strong> {this.state.client.client_secret}</div>
-            <div className="button is-danger is-outlined">Update Credentials</div>
+            <div className="button is-danger is-outlined" onClick={() => this.rotateClientCredentials() }>Update Credentials</div>
           </div>
           <div className="box">
             <div className="subtitle is-4">API Products</div>
