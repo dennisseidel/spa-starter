@@ -7,50 +7,42 @@ import picture from './title.png';
 const home = class Home extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      news: [{
-        title: "Introducing Poly API",
-        summary: "The Poly API enables your application to find and import 3D assets easily and directly from the Poly library. The REST API is available for any platform. If you're building on top of Unity or Unreal Engine make sure to check out the Poly Toolkit, which will make your workflow even more efficient.",
-        button: "Learn more",
-        picture: picture
-      },
-      {
-        title: "Introducing Poly API 0",
-        summary: "The Poly API enables your application to find and import 3D assets easily and directly from the Poly library. The REST API is available for any platform. If you're building on top of Unity or Unreal Engine make sure to check out the Poly Toolkit, which will make your workflow even more efficient.",
-        button: "Learn more",
-        picture: picture
-      },
-      {
-        title: "Introducing Poly API 1",
-        summary: "The Poly API enables your application to find and import 3D assets easily and directly from the Poly library. The REST API is available for any platform. If you're building on top of Unity or Unreal Engine make sure to check out the Poly Toolkit, which will make your workflow even more efficient.",
-        button: "Learn more",
-        picture: picture
-      },
-      {
-        title: "Introducing Poly API 2",
-        summary: "The Poly API enables your application to find and import 3D assets easily and directly from the Poly library. The REST API is available for any platform. If you're building on top of Unity or Unreal Engine make sure to check out the Poly Toolkit, which will make your workflow even more efficient.",
-        button: "Learn more",
-        picture: picture
-      }]}
+    this.state = {}
   }
 
-
   render() {
-    let { news } = this.state;
+    let {news} = this.state;
     return (
       <div className="Home">
-          <FrontHero />
-          <section className="section">
-            <h1 className="subtitle is-2">
-              News
-            </h1>
-              <div className="tile is-ancestor">
-                {news.map((entry) => (
-                    <NewsBox picture={entry.picture} title={entry.title} summary={entry.summary} button={entry.button} key={entry.title} />
-                ))}
+        <section className="hero is-info is-large">
+          <div className="hero-body">
+            <div className="container has-text-centered">
+              <p className="title">
+                open insurance platform
+              </p>
+            </div>
+            <section className="section"></section>
+            <section className="section">
+            <div className="container has-text-centered">
+              <div className="columns is-6">
+                <div className="column">
+                  <i className="fas fa-plug fa-3x"></i>
+                  <p>APIs</p>
+                </div>
+                <div className="column">
+                  <i className="fas fa-id-badge fa-3x"></i>
+                  <p>Identity Management</p>
+                </div>
+                <div className="column">
+                  <i className="fas fa-cube fa-3x"></i>  
+                  <p>Assets</p>
+                </div>
               </div>
-          </section>
-          <Footer />
+            </div>
+            </section>
+          </div>
+          <Footer/>
+        </section>
       </div>
     );
   }
