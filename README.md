@@ -11,8 +11,14 @@ Component should not directly access data, either use *Redux* or *Services*. The
 
 The data is then injected to the components thorugh stateful containers. Components are simple and do not fetch data but represent simple inject state from a higher level component.
 
-In Angular data access is abstracted through *services: more info [here](https://angular.io/tutorial/toh-pt4). I prefer using *Redux*. 
+In Angular data access is abstracted through *services: more info [here](https://angular.io/tutorial/toh-pt4). I prefer using *Redux*.
 
+
+## Development & Testing
+
+For the UI only use Integration Testing & and do storybook driven development (for components). (link to my blog): https://www.cypress.io/
+- start by designing the component and the data it requires (-> redux)
+- then build the components to display and interact with the data
 
 # Create react app documenation on how to do things
 
