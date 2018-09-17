@@ -5,13 +5,15 @@
 `/public`: static assets (`index.html`, `favicon.ico`)
 `/src`: javascript code (`components`, `containers` (views/pages), `services` (need?), `redux` (ducks), `index.js` )
 
-## How to do data access? 
+## How to do data access / how to create your compoents? 
 
-Component should not directly access data, either use *Redux* or *Services*. The component uses an actionCreator to create an action and a reducer to fetch the data and update the global state. 
+Component should not directly access data, either use *Redux* or *Services*. The component uses an actionCreator to create an action and a reducer to fetch the data and update the global state. Where to put the business logik? (pure reducers, action do not specify how but only what ...). See below.
 
 The data is then injected to the components thorugh stateful containers. Components are simple and do not fetch data but represent simple inject state from a higher level component.
 
 In Angular data access is abstracted through *services: more info [here](https://angular.io/tutorial/toh-pt4). I prefer using *Redux*.
+
+Components do not contain business logic. Business Logik is always inside of handlerfunctions in a containers that then uses redux to mange the state through actions.  https://medium.com/@jeffbski/where-do-i-put-my-business-logic-in-a-react-redux-application-9253ef91ce1 / https://github.com/jeffbski/redux-logic#compared-to-redux-saga
 
 
 ## Development & Testing
