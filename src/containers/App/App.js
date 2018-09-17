@@ -77,7 +77,6 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <NavBar logo={logo} width='150' height='25' elements={navElements} rightElements={privateElements} auth={authFunc} />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/manage" exact component={Dashboard} />
