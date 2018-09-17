@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import NavBar from './NavBar';
+import NavBar1 from './NavBar.1';
 import logo from '../../containers/App/logo.svg';
 
 storiesOf('NavBar', module)
@@ -78,4 +79,20 @@ storiesOf('NavBar', module)
       }
     ]
     return <NavBar width='150' height='25' elements={elements} rightElements={rightElements} auth={auth} />
-  });
+  })
+  .add('authenticated new', () => {
+    const elements = ["Products", "Documentation"]
+    const defaultSelected = ["Products"]
+    return <NavBar1 logo={logo} nav={elements} defaultSelected={defaultSelected} authenticated={true} />;
+  })
+  .add('unauthenticated new', () => {
+    const elements = ["Products", "Documentation"]
+    const defaultSelected = ["Products"]
+    return <NavBar1 logo={logo} nav={elements} defaultSelected={defaultSelected} authenticated={false} />;
+  })
+  .add('no logo new', () => {
+    const elements = ["Products", "Documentation"]
+    const defaultSelected = ["Products"]
+    return <NavBar1 nav={elements} defaultSelected={defaultSelected} authenticated={false} />;
+  })
+
