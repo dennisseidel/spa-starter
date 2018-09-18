@@ -104,20 +104,6 @@ https://drive.google.com/drive/folders/1v3_JC_qtN_3s28NR9DPyiekOt7FHm02w
 ```
 
 
-apis: [
-        'Product Info.',
-        'Risk Asessment.',
-        'Adress Check.',
-        'Invenstment.',
-      ],
-      services: [ 
-        'Identity Access Management',
-        'API Development',
-        'API Management',
-        'AI Development'
-      ]
-
-
 # How to adapt this as a template:
 
 In the Istio template: 
