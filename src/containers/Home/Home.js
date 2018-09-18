@@ -1,31 +1,22 @@
 // this will be the home view - use redux / use always a complete layout on a page
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Layout, List, Row, Col, Button, Icon } from 'antd';
 import './Home.css';
 import NavBar from '../../components/NavBar/NavBar.1';
 import logo from '../App/logo.svg';
-
+// import Action Creator
+import { login, logout, checkLogin } from '../../redux/users';
+import { loadProducts } from '../../redux/products';
 
 const { Footer, Content } = Layout;
 
-const home = class Home extends Component {
+const page = class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       elements: ["Products", "Documentation"],
-      defaultSelected: ["Products"],
-      apis: [
-        'Product Info.',
-        'Risk Asessment.',
-        'Adress Check.',
-        'Invenstment.',
-      ],
-      services: [ 
-        'Identity Access Management',
-        'API Development',
-        'API Management',
-        'AI Development'
-      ]
+      defaultSelected: ["Products"]
     };
   }
 
@@ -73,5 +64,40 @@ const home = class Home extends Component {
     )
   };
 }
+
+// maps redux state to local props
+const mapStateToProps = reduxState => {
+  return {
+    // userinfo including auth state
+    user: reduxState.user, 
+    // extract the apis from products
+    services: reduxState.products, // might be a function
+    // services the services form products
+    platform: reduxState.products // might be a function
+  }
+}
+
+// injects a callback into props to dispatch an action from an action creator
+const mapDispatchToProps = dispatch => {
+  return {
+    onLoginClick: () => {
+      dispatch(login())
+    },
+    onLogoutClick: () => {
+      dispatch(logout())
+    },
+    checkLogin: () => {
+      dispatch(checkLogin())
+    },
+    loadProducts: () => {
+      dispatch(loadProducts())
+    }
+  }
+}
+
+const home = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(page)
 
 export default home;

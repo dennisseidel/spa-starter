@@ -33,6 +33,90 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 https://drive.google.com/drive/folders/1v3_JC_qtN_3s28NR9DPyiekOt7FHm02w
 
+*Global State*
+
+```javascript
+{
+  // https://github.com/keycloak/keycloak/blob/master/core/src/main/java/org/keycloak/representations/IDToken.java
+  user: {
+    name: "MaxMustermann",
+    email: "max@muster.com",
+    picture: "http://keycloakendpoint.com/picture",
+    authTime: "xxxxxxxx",
+    accessToken: "xxxxxxxx"
+  },
+  // get it from the product service
+  products: [
+    {
+      name: '',
+      type: 'services',
+      description: "babba bla bla bla",
+      links: {
+        landing: "http://api.d10l.de",
+        production: "",
+        sandbox: "",
+        documentation: ""
+      }
+    },
+    {
+      name: 'Identity Access Management',
+      type: 'platform',
+      description: "babba bla bla bla",
+      links: {
+        landing: "http://api.d10l.de",
+        production: "",
+        sandbox: "",
+        documentation: ""
+      }
+    }
+  ],
+  // get the applications services - always create a basic / account specific app for all services that are not linked to a user created app
+  applications: [
+    {
+      id: "appid-123",
+      name: "sample app",
+      credentials: {
+        clientid: "abc"
+        clientsecret: "abc"
+      },
+      productSubscriptions: [ {
+        id: "abcc123b",
+        name: "insurance api - medium"
+      }] 
+    },
+    {
+      id: "userid-123", // accountid
+      name: "default",
+      credentials: {
+        clientid: "abc"
+        clientsecret: "abc"
+      },
+      productSubscriptions: [ {
+        id: "abcc123b",
+        name: "insurance api - medium"
+      }]
+    }
+
+  ],
+
+  ]
+}
+```
+
+
+apis: [
+        'Product Info.',
+        'Risk Asessment.',
+        'Adress Check.',
+        'Invenstment.',
+      ],
+      services: [ 
+        'Identity Access Management',
+        'API Development',
+        'API Management',
+        'AI Development'
+      ]
+
 
 # How to adapt this as a template:
 
