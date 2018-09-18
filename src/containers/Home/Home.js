@@ -19,6 +19,10 @@ const page = class Home extends Component {
       defaultSelected: ["Products"]
     };
   }
+  
+  componentDidMount() {
+    this.props.loadProducts();
+  }
 
   render() {
     return (
@@ -38,19 +42,19 @@ const page = class Home extends Component {
             <div className="sectiontitle">Products and Services</div>
             <Col span={12}>
               <List
-                header={<div><h2><Icon type="api"/> APIs</h2></div>}
+                header={<div><h2><Icon type="api"/>Services</h2></div>}
                 bordered
-                dataSource={this.state.apis}
-                renderItem={item => (<List.Item>{item}</List.Item>)}
+                dataSource={this.props.services}
+                renderItem={item => (<List.Item>{item.name}</List.Item>)}
                 style={{ background: '#fff' }}
               />
             </Col>
             <Col span={12} >
               <List
-                header={<div><h1><Icon type="block"/> Services</h1></div>}
+                header={<div><h1><Icon type="block"/>Platform</h1></div>}
                 bordered
-                dataSource={this.state.services}
-                renderItem={item => (<List.Item>{item}</List.Item>)}
+                dataSource={this.props.platform}
+                renderItem={item => (<List.Item>{item.name}</List.Item>)}
                 style={{ background: '#fff'}}
               />
             </Col>
@@ -65,15 +69,19 @@ const page = class Home extends Component {
   };
 }
 
+const getProductByType = (products, productType) => {
+  return products.filter(product => product.type === productType); 
+}
+
 // maps redux state to local props
 const mapStateToProps = reduxState => {
   return {
     // userinfo including auth state
     user: reduxState.user, 
     // extract the apis from products
-    services: reduxState.products, // might be a function
+    services: getProductByType(reduxState.products.products, 'services'),
     // services the services form products
-    platform: reduxState.products // might be a function
+    platform: getProductByType(reduxState.products.products, 'platform')
   }
 }
 
